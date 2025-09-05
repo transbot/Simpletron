@@ -126,16 +126,15 @@ export const translations = {
         readCount: '读取要比较的数字个数',
         loadCount: '加载数字个数到累加器',
         branchIfZero: '如果个数为0则跳转结束',
-        subtract1: '减1',
-        storeRemainingCount: '存储剩余需要读取的个数',
+        storeCount: '存储计数器',
         readFirst: '读取第一个数字到地址52',
         loadFirst: '加载第一个数字到累加器',
         storeMax: '存储第一个数字为初始最大值',
-        loadRemainingCount: '加载剩余个数',
+        loadCount: '加载计数器',
+        subtract1: '减1',
+        storeNewCount: '存储新的计数器',
         branchIfDone: '如果剩余个数为0则结束',
         readNext: '读取下一个数字',
-        subtract1Again: '剩余个数减1',
-        storeNewCount: '存储新的剩余个数',
         loadCurrentMax: '加载当前最大值',
         subNewNumber: '减去新读取的数字',
         branchIfNewLarger: '如果新数字更大则跳转更新',
@@ -146,10 +145,9 @@ export const translations = {
         writeMax: '输出最大值',
         halt: '停止',
         inputCount: '输入的总个数',
-        remainingCount: '剩余需要读取的个数',
         currentNumber: '当前读取的数字',
-        constant1: '常量1',
-        maxValue: '当前最大值'
+        maxValue: '当前最大值',
+        constant1: '常量1'
       }
     }
   },
@@ -281,16 +279,15 @@ export const translations = {
         readCount: 'Read count of numbers to compare',
         loadCount: 'Load count to accumulator',
         branchIfZero: 'If count is 0, jump to end',
-        subtract1: 'Subtract 1',
-        storeRemainingCount: 'Store remaining count to read',
+        storeCount: 'Store counter',
         readFirst: 'Read first number to address 52',
         loadFirst: 'Load first number to accumulator',
         storeMax: 'Store first number as initial max',
-        loadRemainingCount: 'Load remaining count',
+        loadCount: 'Load counter',
+        subtract1: 'Subtract 1',
+        storeNewCount: 'Store new counter',
         branchIfDone: 'If remaining count is 0, end',
         readNext: 'Read next number',
-        subtract1Again: 'Subtract 1 from remaining count',
-        storeNewCount: 'Store new remaining count',
         loadCurrentMax: 'Load current maximum',
         subNewNumber: 'Subtract newly read number',
         branchIfNewLarger: 'If new number is larger, branch to update',
@@ -301,10 +298,9 @@ export const translations = {
         writeMax: 'Output maximum',
         halt: 'Halt',
         inputCount: 'Input total count',
-        remainingCount: 'Remaining count to read',
         currentNumber: 'Current number read',
-        constant1: 'Constant 1',
-        maxValue: 'Current maximum value'
+        maxValue: 'Current maximum value',
+        constant1: 'Constant 1'
       }
     }
   }
