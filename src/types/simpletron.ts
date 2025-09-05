@@ -63,37 +63,6 @@ export const getExamplePrograms = (language: Language) => {
       `+1110  // ${t.examples.comparison.writeB}`,
       `+4300  // ${t.examples.comparison.halt}`, 
       `+0000  // ${t.examples.comparison.varA}`,
-      `+0000  // ${t.examples.comparison.varB}`,
-      "-99999"
-    ],
-    findMax: [
-      `+1050  // ${t.examples.findMax.readCount}`,
-      `+2050  // ${t.examples.findMax.loadCount}`,
-      `+4220  // ${t.examples.findMax.branchIfZero}`,
-      `+3151  // ${t.examples.findMax.subtract1}`,
-      `+2151  // ${t.examples.findMax.storeCount}`,
-      `+1052  // ${t.examples.findMax.readFirst}`,
-      `+2052  // ${t.examples.findMax.loadFirst}`,
-      `+2153  // ${t.examples.findMax.storeMax}`,
-      `+2051  // ${t.examples.findMax.loadCount}`,
-      `+4220  // ${t.examples.findMax.branchIfDone}`,
-      `+1052  // ${t.examples.findMax.readNext}`,
-      `+2053  // ${t.examples.findMax.loadCurrentMax}`,
-      `+3152  // ${t.examples.findMax.subNewNumber}`,
-      `+4117  // ${t.examples.findMax.branchIfNewLarger}`,
-      `+3151  // ${t.examples.findMax.decrementCounter}`,
-      `+2151  // ${t.examples.findMax.storeNewCount}`,
-      `+4008  // ${t.examples.findMax.jumpToLoop}`,
-      `+2052  // ${t.examples.findMax.loadNewNumber}`,
-      `+2153  // ${t.examples.findMax.updateMax}`,
-      `+4014  // ${t.examples.findMax.jumpBackAfterUpdate}`,
-      `+1153  // ${t.examples.findMax.writeMax}`,
-      `+4300  // ${t.examples.findMax.halt}`,
-      `+0000  // ${t.examples.findMax.inputCount}`,
-      `+0000  // ${t.examples.findMax.currentNumber}`,
-      `+0000  // ${t.examples.findMax.maxValue}`,
-      `+0001  // ${t.examples.findMax.constant1}`,
-      "-99999"
     ]
   };
 };

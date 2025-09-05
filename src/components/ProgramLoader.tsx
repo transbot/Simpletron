@@ -58,14 +58,6 @@ export const ProgramLoader: React.FC<ProgramLoaderProps> = ({ onLoad, isRunning,
             </button>
             <button
               type="button"
-              onClick={() => loadExampleProgram('findMax')}
-              disabled={isRunning}
-              className="px-3 py-1 bg-purple-600 text-white rounded text-sm hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {t.programLoader.findMaxProgram}
-            </button>
-            <button
-              type="button"
               onClick={clearProgram}
               disabled={isRunning}
               className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
