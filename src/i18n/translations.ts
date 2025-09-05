@@ -278,14 +278,13 @@ export const translations = {
         readCount: 'Read number count',
         loadCount: 'Load number count',
         branchIfZero: 'If 0, end program',
-        subtract1: 'Subtract 1',
-        storeRemainingCount: 'Store remaining count',
+        storeCount: 'Store counter',
         readFirst: 'Read first number',
         loadFirst: 'Load first number',
         storeMax: 'Store as maximum',
-        loadCount: 'Load remaining count',
-        branchIfDone: 'If done, end',
+        subtract1: 'Subtract 1',
         storeNewCount: 'Store new count',
+        branchIfDone: 'If done, end',
         readNext: 'Read next number',
         loadMax: 'Load current maximum',
         subNew: 'Subtract new number',
@@ -295,10 +294,10 @@ export const translations = {
         updateMax: 'Update maximum',
         writeMax: 'Output maximum',
         halt: 'Halt',
-        inputNumber: 'Input number',
-        counter: 'Remaining counter',
-        constant1: 'Constant 1',
-        maxValue: 'Maximum value storage'
+        maxValue: 'Maximum value storage',
+        counter: 'Counter',
+        currentNumber: 'Current number',
+        constant1: 'Constant 1'
       }
     }
   }
