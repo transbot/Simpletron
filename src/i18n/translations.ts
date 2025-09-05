@@ -148,13 +148,6 @@ export const translations = {
         constant1: '常量1',
         maxValue: '最大值存储'
       }
-        writeMax: '输出最大值',
-        halt: '停止',
-        maxValue: '最大值存储',
-        counter: '计数器',
-        currentNumber: '当前数字',
-        constant1: '常量1'
-      }
     }
   },
   
@@ -305,7 +298,7 @@ export const translations = {
         inputNumber: 'Input number',
         counter: 'Remaining counter',
         constant1: 'Constant 1',
-        maxValue: 'Maximum value storage',
+        maxValue: 'Maximum value storage'
       }
     }
   }
