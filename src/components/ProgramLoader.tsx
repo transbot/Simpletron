@@ -78,8 +78,8 @@ export const ProgramLoader: React.FC<ProgramLoaderProps> = ({ onLoad, isRunning,
               disabled={isRunning}
               className="w-full h-64 p-3 bg-gray-900 border border-gray-600 rounded font-mono text-sm text-gray-100 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder={language === 'zh' ? 
-                "输入SML指令，例如：\n00 ? +1007  // 读取A\n01 ? +1008  // 读取B\n02 ? +2007  // 加载A\n03 ? +3008  // 加B\n04 ? +2109  // 存储C\n05 ? +1109  // 写入C\n06 ? +4300  // 停止\n07 ? +0000  // 变量A\n08 ? +0000  // 变量B\n09 ? +0000  // 结果C\n10 ? -99999" :
-                "Enter SML instructions, for example:\n00 ? +1007  // Read A\n01 ? +1008  // Read B\n02 ? +2007  // Load A\n03 ? +3008  // Add B\n04 ? +2109  // Store C\n05 ? +1109  // Write C\n06 ? +4300  // Halt\n07 ? +0000  // Variable A\n08 ? +0000  // Variable B\n09 ? +0000  // Result C\n10 ? -99999"
+                "输入SML程序，支持注释和文档：\n\n// 程序说明\n// 这是一个加法程序\n\n00 ? +1007  // 读取A\n01 ? +1008  // 读取B\n02 ? +2007  // 加载A\n03 ? +3008  // 加B\n04 ? +2109  // 存储C\n05 ? +1109  // 写入C\n06 ? +4300  // 停止\n07 ? +0000  // 变量A\n08 ? +0000  // 变量B\n09 ? +0000  // 结果C\n100 ? -99999" :
+                "Enter SML program with comments and documentation:\n\n// Program description\n// This is an addition program\n\n00 ? +1007  // Read A\n01 ? +1008  // Read B\n02 ? +2007  // Load A\n03 ? +3008  // Add B\n04 ? +2109  // Store C\n05 ? +1109  // Write C\n06 ? +4300  // Halt\n07 ? +0000  // Variable A\n08 ? +0000  // Variable B\n09 ? +0000  // Result C\n100 ? -99999"
               }
             />
           </div>

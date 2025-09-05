@@ -60,29 +60,37 @@ export class Simpletron {
   public loadProgramFromInput(program: string): { success: boolean; error?: string } {
     const instructions: number[] = [];
     const lines = program.trim().split('\n');
-    let currentAddress = 0;
     
     for (const line of lines) {
       const trimmedLine = line.trim();
       
-      // 跳过空行
-      if (!trimmedLine) continue;
+      // 跳过空行和纯注释行
+      if (!trimmedLine || trimmedLine.startsWith('//')) continue;
       
       let address: number;
       let instruction: number;
       
       // 检查是否有地址前缀格式 "XX ? +YYYY"
-      const addressFormatMatch = trimmedLine.match(/^(\d{2})\s*\?\s*([+-]?\d+)/);
+      const addressFormatMatch = trimmedLine.match(/^(\d{1,2})\s*\?\s*([+-]?\d+)/);
       
       if (addressFormatMatch) {
         // 有地址前缀的格式
         address = parseInt(addressFormatMatch[1]);
-        const instructionStr = addressFormatMatch[2];
+        let instructionStr = addressFormatMatch[2];
         
         // 移除注释
         const commentIndex = instructionStr.indexOf('//');
-        const cleanInstructionStr = (commentIndex !== -1 ? 
-          instructionStr.substring(0, commentIndex) : instructionStr).trim();
+        if (commentIndex !== -1) {
+          instructionStr = instructionStr.substring(0, commentIndex);
+        }
+        const cleanInstructionStr = instructionStr.trim();
+        
+        if (!cleanInstructionStr) {
+          return {
+            success: false,
+            error: `地址 ${address.toString().padStart(2, '0')} 处缺少指令 (原行: "${trimmedLine}")`
+          };
+        }
         
         instruction = parseInt(cleanInstructionStr);
         
@@ -93,34 +101,45 @@ export class Simpletron {
           };
         }
       } else {
-        // 传统格式，没有地址前缀
+        // 检查是否是没有地址前缀但有指令的行
         const commentIndex = trimmedLine.indexOf('//');
         const cleanLine = (commentIndex !== -1 ? 
-          trimmedLine.substring(0, commentIndex) : trimmedLine).trim();
+          instructionStr.substring(0, commentIndex) : instructionStr).trim();
         
+        // 如果清理后的行为空，跳过
         if (!cleanLine) continue;
         
-        if (cleanLine === '-99999') break;
+        // 检查是否是纯数字指令（传统格式）
+        const instructionMatch = cleanLine.match(/^([+-]?\d+)$/);
+        if (!instructionMatch) {
+          // 不是有效的指令格式，跳过这行
+          continue;
+        }
         
-        instruction = parseInt(cleanLine);
+        instruction = parseInt(instructionMatch[1]);
         if (isNaN(instruction)) {
           return {
             success: false,
-            error: `无效输入: "${cleanLine}" (原行: "${trimmedLine}")`
+            error: `无效指令: "${cleanLine}" (原行: "${trimmedLine}")`
           };
         }
         
-        address = currentAddress;
+        // 对于传统格式，需要按顺序分配地址
+        // 但这里我们要求必须使用地址前缀格式
+        return {
+          success: false,
+          error: `指令必须包含地址前缀格式 "XX ? instruction" (原行: "${trimmedLine}")`
+        };
       }
       
       // 检查哨兵值
       if (instruction === -99999) break;
       
       // 验证地址范围
-      if (address < 0 || address >= 100) {
+      if (address < 0 || address > 100) {
         return {
           success: false,
-          error: `地址 ${address} 超出有效范围 (0-99) (原行: "${trimmedLine}")`
+          error: `地址 ${address} 超出有效范围 (0-100) (原行: "${trimmedLine}")`
         };
       }
       
@@ -138,7 +157,6 @@ export class Simpletron {
       }
       
       instructions[address] = instruction;
-      currentAddress = Math.max(currentAddress, address + 1);
     }
 
     return this.loadProgram(instructions);
