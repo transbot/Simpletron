@@ -122,22 +122,23 @@ export class AdvancedSimpletronVM {
     // Fetch instruction
     this.state.instructionRegister = this.state.memory[this.state.instructionCounter];
     
-    let opcode: number;
-    let operand: number;
+    let instruction: number;
+    let opcode: number = 0;
+    let operand: number = 0;
     
     if (typeof this.state.instructionRegister === 'string' && this.state.instructionRegister.startsWith('0x')) {
       // Hex format
-      const hexValue = parseInt(this.state.instructionRegister, 16);
-      opcode = Math.floor(hexValue / 100);
-      operand = hexValue % 100;
+      instruction = parseInt(this.state.instructionRegister, 16);
     } else {
       // Decimal format
-      const decValue = typeof this.state.instructionRegister === 'number' 
+      instruction = typeof this.state.instructionRegister === 'number' 
         ? this.state.instructionRegister 
         : parseInt(this.state.instructionRegister.toString());
-      opcode = Math.floor(Math.abs(decValue) / 100);
-      operand = Math.abs(decValue) % 100;
     }
+
+    // Parse opcode and operand from instruction
+    opcode = Math.floor(Math.abs(instruction) / 100);
+    operand = Math.abs(instruction) % 100;
 
     this.state.operationCode = opcode;
     this.state.operand = operand;
