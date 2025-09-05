@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Monitor, Cpu, Code } from 'lucide-react';
+import { Monitor, Cpu, Code, ArrowRight } from 'lucide-react';
 import { Simpletron } from './utils/simpletron';
 import { useLanguage } from './hooks/useLanguage';
 import { translations } from './i18n/translations';
@@ -13,6 +13,7 @@ import { SimpletronState } from './types/simpletron';
 function App() {
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language];
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [simpletron] = useState(() => new Simpletron());
   const [state, setState] = useState<SimpletronState>(simpletron.getState());
   const [output, setOutput] = useState<string[]>([]);
@@ -99,6 +100,20 @@ function App() {
     updateState();
   };
 
+  if (showAdvanced) {
+    // 动态导入高级版组件
+    const AdvancedSimpletron = React.lazy(() => import('./components/AdvancedSimpletron'));
+    return (
+      <React.Suspense fallback={
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+          <div className="text-white text-xl">Loading Advanced Simpletron...</div>
+        </div>
+      }>
+        <AdvancedSimpletron onBack={() => setShowAdvanced(false)} language={language} toggleLanguage={toggleLanguage} />
+      </React.Suspense>
+    );
+  }
+
   const handleInput = (value: number) => {
     const result = simpletron.provideInput(value);
     if (result.success) {
@@ -127,6 +142,18 @@ function App() {
             <Monitor className="text-blue-400" size={48} />
             <h1 className="text-4xl font-bold text-white">{t.title}</h1>
           </div>
+          
+          {/* 高级版链接 */}
+          <div className="mb-4">
+            <button
+              onClick={() => setShowAdvanced(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105"
+            >
+              <span className="font-semibold">{language === 'zh' ? '高级版' : 'Advanced'}</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+          
           <p className="text-gray-300 text-lg">
             {t.subtitle}
           </p>
