@@ -278,7 +278,9 @@ export class AdvancedSimpletronVM {
     }
 
     const value = this.state.memory[this.state.operand];
-    const formatted = typeof value === 'number' ? this.formatWord(value) : value.toString();
+    const formatted = typeof value === 'number' ? 
+      (this.state.floatMode && value % 1 !== 0 ? value.toFixed(2) : this.formatWord(value)) : 
+      value.toString();
     this.output.push(formatted);
     
     return {
@@ -586,6 +588,10 @@ export class AdvancedSimpletronVM {
           success: false,
           error: `Invalid input value: ${value}`
         };
+      }
+      // 如果输入的是浮点数，启用浮点模式
+      if (numValue % 1 !== 0) {
+        this.state.floatMode = true;
       }
       this.state.memory[this.state.operand] = numValue;
     }

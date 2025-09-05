@@ -71,28 +71,28 @@ export const getAdvancedExamplePrograms = (language: 'zh' | 'en') => {
       `// 浮点数运算演示`,
       `00 ? +1099  // 读取数A到地址99`,
       `01 ? +1098  // 读取数B到地址98`,
-      `02 ? +2099  // 加载A`,
-      `03 ? +3098  // A + B`,
-      `04 ? +2197  // 存储结果到地址97`,
+      `02 ? +5099  // 浮点加载A (使用浮点加载指令)`,
+      `03 ? +5298  // 浮点加法 A + B`,
+      `04 ? +5197  // 浮点存储结果到地址97`,
       `05 ? +1197  // 输出结果`,
       `06 ? +4300  // 停止`,
       `97 ? +0000  // 结果`,
       `98 ? +0000  // 变量B`,
       `99 ? +0000  // 变量A`,
-      `102 ? -99999`
+      `100 ? -99999`
     ] : [
       `// Float arithmetic demo`,
       `00 ? +1099  // Read number A to address 99`,
       `01 ? +1098  // Read number B to address 98`,
-      `02 ? +2099  // Load A`,
-      `03 ? +3098  // A + B`,
-      `04 ? +2197  // Store result to address 97`,
+      `02 ? +5099  // Float load A (use float load instruction)`,
+      `03 ? +5298  // Float add A + B`,
+      `04 ? +5197  // Float store result to address 97`,
       `05 ? +1197  // Write result`,
       `06 ? +4300  // Halt`,
       `97 ? +0000  // Result`,
       `98 ? +0000  // Variable B`,
       `99 ? +0000  // Variable A`,
-      `102 ? -99999`
+      `100 ? -99999`
     ],
 
     powerMod: language === 'zh' ? [
