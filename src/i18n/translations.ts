@@ -122,6 +122,7 @@ export const translations = {
         varA: '变量A',
         varB: '变量B'
       },
+      findMax: {
         readFirst: '读取第一个数字',
         readSecond: '读取第二个数字',
         loadFirst: '加载第一个数字',
@@ -260,6 +261,7 @@ export const translations = {
         varA: 'Variable A',
         varB: 'Variable B'
       },
+      findMax: {
         readFirst: 'Read first number',
         readSecond: 'Read second number',
         loadFirst: 'Load first number',
