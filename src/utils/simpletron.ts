@@ -182,54 +182,6 @@ export class Simpletron {
 
     return this.loadProgram(instructions);
   }
-          continue;
-        }
-        
-        instruction = parseInt(instructionMatch[1]);
-        if (isNaN(instruction)) {
-          return {
-            success: false,
-            error: `无效指令: "${cleanLine}" (原行: "${trimmedLine}")`
-          };
-        }
-        
-        // 对于传统格式，需要按顺序分配地址
-        // 但这里我们要求必须使用地址前缀格式
-        return {
-          success: false,
-          error: `指令必须包含地址前缀格式 "XX ? instruction" (原行: "${trimmedLine}")`
-        };
-      }
-      
-      // 检查哨兵值
-      if (instruction === -99999) break;
-      
-      // 验证地址范围
-      if (address < 0 || address > 100) {
-        return {
-          success: false,
-          error: `地址 ${address} 超出有效范围 (0-100) (原行: "${trimmedLine}")`
-        };
-      }
-      
-      // 验证指令范围
-      if (!this.isValidWord(instruction)) {
-        return {
-          success: false,
-          error: `指令 ${instruction} 超出有效范围 (-9999 到 +9999) 在地址 ${address.toString().padStart(2, '0')} (原行: "${trimmedLine}")`
-        };
-      }
-      
-      // 确保instructions数组足够大
-      while (instructions.length <= address) {
-        instructions.push(0);
-      }
-      
-      instructions[address] = instruction;
-    }
-
-    return this.loadProgram(instructions);
-  }
 
   private isValidWord(word: number): boolean {
     return Number.isInteger(word) && word >= -9999 && word <= 9999;
