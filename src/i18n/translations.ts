@@ -139,6 +139,7 @@ export const translations = {
         loadMax: '加载当前最大值',
         subNew: '减去新数字',
         branchIfNeg: '如果结果为负（新数字更大），跳转到08更新最大值',
+        jumpToLoop: '跳转回循环开始',
         writeMax: '显示最大值',
         halt: '停止',
         constant1: '常量1'
@@ -286,6 +287,7 @@ export const translations = {
         loadMax: 'Load current maximum',
         subNew: 'Subtract new number',
         branchIfNeg: 'If negative (new number is larger), branch to 08 to update max',
+        jumpToLoop: 'Jump back to loop start',
         writeMax: 'Display maximum',
         halt: 'Halt',
         constant1: 'Constant 1'

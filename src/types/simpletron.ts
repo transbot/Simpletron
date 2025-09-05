@@ -84,6 +84,7 @@ export const getExamplePrograms = (language: Language) => {
       `+2000  // ${t.examples.findMax.loadMax}`,
       `+3110  // ${t.examples.findMax.subNew}`,
       `+4108  // ${t.examples.findMax.branchIfNeg}`,
+      `+4009  // ${t.examples.findMax.jumpToLoop}`,
       `+1100  // ${t.examples.findMax.writeMax}`,
       `+4300  // ${t.examples.findMax.halt}`,
       `+0001  // ${t.examples.findMax.constant1}`,
