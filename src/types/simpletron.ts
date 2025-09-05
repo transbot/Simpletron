@@ -29,6 +29,7 @@ export const OPCODES = {
   BRANCH: 40,
   BRANCHNEG: 41,
   BRANCHZERO: 42,
+  HALT: 43,
 }
 import { Language } from '../hooks/useLanguage';
 import { translations } from '../i18n/translations';

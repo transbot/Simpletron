@@ -155,7 +155,7 @@ export class Simpletron {
       case OPCODES.BRANCHZERO:
         shouldIncrementCounter = !this.executeBranchZero();
         break;
-      case OPCODES.HALT:
+      case 43: // HALT
         result = this.executeHalt();
         return result;
       default:
