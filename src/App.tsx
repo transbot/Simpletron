@@ -138,6 +138,29 @@ function App() {
           <div className="flex justify-end mb-4">
             <LanguageToggle language={language} onToggle={toggleLanguage} />
           </div>
+          
+          {/* 作者和项目链接 */}
+          <div className="flex justify-center items-center gap-6 mb-6">
+            <a
+              href="https://bookzhou.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm"
+            >
+              <span>👨‍💻</span>
+              <span>{language === 'zh' ? '周靖的博客' : "Zhou Jing's Blog"}</span>
+            </a>
+            <a
+              href="https://github.com/transbot/Simpletron"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
+            >
+              <span>⭐</span>
+              <span>GitHub</span>
+            </a>
+          </div>
+          
           <div className="flex items-center justify-center gap-3 mb-4">
             <Monitor className="text-blue-400" size={48} />
             <h1 className="text-4xl font-bold text-white">{t.title}</h1>
