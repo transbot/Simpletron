@@ -85,12 +85,12 @@ export const getExamplePrograms = (language: Language) => {
       `+1010  // ${t.examples.findMax.readNext}`,
       `+2000  // ${t.examples.findMax.loadMax}`,
       `+3110  // ${t.examples.findMax.subNew}`,
-      `+4120  // ${t.examples.findMax.branchIfNeg}`,
+      `+4121  // ${t.examples.findMax.branchIfNeg}`,
       `+1100  // ${t.examples.findMax.writeMax}`,
       `+4300  // ${t.examples.findMax.halt}`,
-      `+2010  // ${t.examples.findMax.updateMax}`,
-      `+2100  // ${t.examples.findMax.storeNewMax}`,
-      `+4009  // ${t.examples.findMax.jumpToLoop}`,
+      `+2010  // ${t.examples.findMax.loadNewNumber}`,
+      `+2100  // ${t.examples.findMax.storeAsMax}`,
+      `+4009  // ${t.examples.findMax.continueLoop}`,
       `+0001  // ${t.examples.findMax.constant1}`,
       "-99999"
     ]

@@ -143,9 +143,9 @@ export const translations = {
         branchIfNeg: '如果结果为负（新数字更大），跳转到20更新最大值',
         writeMax: '显示最大值',
         halt: '停止',
-        updateMax: '加载新数字',
-        storeNewMax: '存储新的最大值',
-        jumpToLoop: '跳转回循环开始',
+        loadNewNumber: '加载新数字到累加器',
+        storeAsMax: '存储为新的最大值',
+        continueLoop: '继续循环',
         constant1: '常量1'
       }
     }
@@ -295,9 +295,9 @@ export const translations = {
         branchIfNeg: 'If negative (new number is larger), branch to 20 to update max',
         writeMax: 'Display maximum',
         halt: 'Halt',
-        updateMax: 'Load new number',
-        storeNewMax: 'Store new maximum',
-        jumpToLoop: 'Jump back to loop start',
+        loadNewNumber: 'Load new number to accumulator',
+        storeAsMax: 'Store as new maximum',
+        continueLoop: 'Continue loop',
         constant1: 'Constant 1'
       }
     }
