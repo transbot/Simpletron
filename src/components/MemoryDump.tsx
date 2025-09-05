@@ -11,8 +11,9 @@ interface MemoryDumpProps {
 export const MemoryDump: React.FC<MemoryDumpProps> = ({ state, language }) => {
   const t = translations[language];
   const formatWord = (word: number): string => {
-    const sign = word >= 0 ? '+' : '';
-    return sign + word.toString().padStart(4, '0');
+    const sign = word >= 0 ? '+' : '-';
+    const absValue = Math.abs(word).toString().padStart(4, '0');
+    return sign + absValue;
   };
 
   return (
