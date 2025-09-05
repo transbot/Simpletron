@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Monitor, Cpu, Code } from 'lucide-react';
 import { Simpletron } from './utils/simpletron';
+import { useLanguage } from './hooks/useLanguage';
+import { translations } from './i18n/translations';
+import { LanguageToggle } from './components/LanguageToggle';
 import { ProgramLoader } from './components/ProgramLoader';
 import { ExecutionControl } from './components/ExecutionControl';
 import { OutputDisplay } from './components/OutputDisplay';
@@ -8,6 +11,8 @@ import { MemoryDump } from './components/MemoryDump';
 import { SimpletronState } from './types/simpletron';
 
 function App() {
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language];
   const [simpletron] = useState(() => new Simpletron());
   const [state, setState] = useState<SimpletronState>(simpletron.getState());
   const [output, setOutput] = useState<string[]>([]);
@@ -34,7 +39,7 @@ function App() {
     
     if (!result.success && result.error) {
       addError(result.error);
-      addError("*** Simpletron执行异常终止 ***");
+      addError(t.errors.executionTerminated);
       setAutoRun(false);
     } else if (result.needsInput) {
       setInputPrompt(result.inputPrompt || '');
@@ -115,24 +120,27 @@ function App() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* 标题 */}
         <div className="text-center mb-8">
+          <div className="flex justify-end mb-4">
+            <LanguageToggle language={language} onToggle={toggleLanguage} />
+          </div>
           <div className="flex items-center justify-center gap-3 mb-4">
             <Monitor className="text-blue-400" size={48} />
-            <h1 className="text-4xl font-bold text-white">Simpletron虚拟机</h1>
+            <h1 className="text-4xl font-bold text-white">{t.title}</h1>
           </div>
           <p className="text-gray-300 text-lg">
-            功能完整的SML (Simpletron Machine Language) 模拟器
+            {t.subtitle}
           </p>
           
           <div className="mt-6 bg-gray-800 rounded-lg p-4 text-left max-w-4xl mx-auto">
             <h2 className="text-xl font-semibold text-blue-400 mb-3 flex items-center gap-2">
               <Code size={20} />
-              欢迎来到Simpletron！
+              {t.welcome}
             </h2>
             <div className="text-gray-300 text-sm space-y-1">
-              <p>*** 请一次输入一条程序指令（或数据字）***</p>
-              <p>*** 我将显示内存地址和一个问号（?）***</p>
-              <p>*** 然后，您输入该地址的字 ***</p>
-              <p>*** 输入-99999结束程序输入 ***</p>
+              <p>{t.instructions.enterOneInstruction}</p>
+              <p>{t.instructions.showMemoryAddress}</p>
+              <p>{t.instructions.enterWordForAddress}</p>
+              <p>{t.instructions.endWithNegative}</p>
             </div>
           </div>
         </div>
@@ -143,6 +151,7 @@ function App() {
             <ProgramLoader 
               onLoad={handleLoadProgram}
               isRunning={state.isRunning}
+              language={language}
             />
             
             <ExecutionControl
@@ -155,6 +164,7 @@ function App() {
               needsInput={needsInput}
               inputPrompt={inputPrompt}
               programLoaded={programLoaded}
+              language={language}
             />
           </div>
 
@@ -163,46 +173,47 @@ function App() {
             <OutputDisplay 
               output={output}
               errors={errors}
+              language={language}
             />
           </div>
         </div>
 
         {/* 底部：内存转储 */}
         <div className="mt-8">
-          <MemoryDump state={state} />
+          <MemoryDump state={state} language={language} />
         </div>
 
         {/* 寄存器转储 - 当程序停止时显示 */}
         {(state.isHalted || errors.length > 0) && (
           <div className="mt-6 bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-green-400 mb-3">寄存器转储</h3>
+            <h3 className="text-lg font-semibold text-green-400 mb-3">{t.memoryDump.registers}</h3>
             <div className="font-mono text-sm text-gray-300 space-y-1">
               <div className="flex justify-between">
-                <span>accumulator</span>
+                <span>{t.memoryDump.registerNames.accumulator}</span>
                 <span className="text-white font-bold">
                   {(state.accumulator >= 0 ? '+' : '') + state.accumulator.toString().padStart(4, '0')}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span>instructionCounter</span>
+                <span>{t.memoryDump.registerNames.instructionCounter}</span>
                 <span className="text-white font-bold">
                   {state.instructionCounter.toString().padStart(2, '0')}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span>instructionRegister</span>
+                <span>{t.memoryDump.registerNames.instructionRegister}</span>
                 <span className="text-white font-bold">
                   {(state.instructionRegister >= 0 ? '+' : '') + state.instructionRegister.toString().padStart(4, '0')}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span>operationCode</span>
+                <span>{t.memoryDump.registerNames.operationCode}</span>
                 <span className="text-white font-bold">
                   {state.operationCode.toString().padStart(2, '0')}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span>operand</span>
+                <span>{t.memoryDump.registerNames.operand}</span>
                 <span className="text-white font-bold">
                   {state.operand.toString().padStart(2, '0')}
                 </span>
@@ -216,7 +227,7 @@ function App() {
           <div className="mt-6 bg-red-900 border border-red-600 rounded-lg p-4">
             <h3 className="text-lg font-semibold text-red-300 mb-2 flex items-center gap-2">
               <Cpu size={20} />
-              系统错误
+              {t.errors.systemError}
             </h3>
             <div className="space-y-1">
               {errors.slice(-3).map((error, index) => (
@@ -227,15 +238,15 @@ function App() {
             </div>
             {errors.length > 3 && (
               <div className="text-red-400 text-xs mt-2">
-                ... 还有 {errors.length - 3} 个错误
+                {t.errors.moreErrors.replace('{count}', (errors.length - 3).toString())}
               </div>
             )}
             
             {(errors.some(e => e.includes('异常终止')) || state.isHalted) && (
               <div className="mt-4 p-3 bg-gray-800 rounded border text-xs">
-                <div className="text-gray-300 mb-2 font-semibold">完整转储:</div>
+                <div className="text-gray-300 mb-2 font-semibold">{t.errors.completeDump}</div>
                 <pre className="text-gray-400 whitespace-pre-wrap">
-                  {simpletron.generateDump()}
+                  {simpletron.generateDump(language)}
                 </pre>
               </div>
             )}

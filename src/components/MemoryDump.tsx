@@ -1,11 +1,15 @@
 import React from 'react';
 import { SimpletronState } from '../types/simpletron';
+import { Language } from '../hooks/useLanguage';
+import { translations } from '../i18n/translations';
 
 interface MemoryDumpProps {
   state: SimpletronState;
+  language: Language;
 }
 
-export const MemoryDump: React.FC<MemoryDumpProps> = ({ state }) => {
+export const MemoryDump: React.FC<MemoryDumpProps> = ({ state, language }) => {
+  const t = translations[language];
   const formatWord = (word: number): string => {
     const sign = word >= 0 ? '+' : '';
     return sign + word.toString().padStart(4, '0');
@@ -13,29 +17,29 @@ export const MemoryDump: React.FC<MemoryDumpProps> = ({ state }) => {
 
   return (
     <div className="bg-gray-900 rounded-lg p-6 font-mono text-sm">
-      <h3 className="text-xl font-semibold mb-4 text-blue-400">系统转储</h3>
+      <h3 className="text-xl font-semibold mb-4 text-blue-400">{t.memoryDump.title}</h3>
       
       <div className="mb-6">
-        <h4 className="text-lg font-medium mb-3 text-green-400">寄存器:</h4>
+        <h4 className="text-lg font-medium mb-3 text-green-400">{t.memoryDump.registers}</h4>
         <div className="space-y-1 text-gray-300">
           <div className="flex justify-between">
-            <span className="text-yellow-400">accumulator:</span>
+            <span className="text-yellow-400">{t.memoryDump.registerNames.accumulator}:</span>
             <span className="text-white font-bold">{formatWord(state.accumulator)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-yellow-400">instructionCounter:</span>
+            <span className="text-yellow-400">{t.memoryDump.registerNames.instructionCounter}:</span>
             <span className="text-white font-bold">{state.instructionCounter.toString().padStart(2, '0')}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-yellow-400">instructionRegister:</span>
+            <span className="text-yellow-400">{t.memoryDump.registerNames.instructionRegister}:</span>
             <span className="text-white font-bold">{formatWord(state.instructionRegister)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-yellow-400">operationCode:</span>
+            <span className="text-yellow-400">{t.memoryDump.registerNames.operationCode}:</span>
             <span className="text-white font-bold">{state.operationCode.toString().padStart(2, '0')}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-yellow-400">operand:</span>
+            <span className="text-yellow-400">{t.memoryDump.registerNames.operand}:</span>
             <span className="text-white font-bold">{state.operand.toString().padStart(2, '0')}</span>
           </div>
         </div>

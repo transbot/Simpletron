@@ -1,4 +1,5 @@
 import { SimpletronState, ExecutionResult, OPCODES } from '../types/simpletron';
+import { translations, Language } from '../i18n/translations';
 
 export class Simpletron {
   private state: SimpletronState;
@@ -380,11 +381,11 @@ export class Simpletron {
   private executeHalt(): ExecutionResult {
     this.state.isHalted = true;
     this.state.isRunning = false;
-    this.output.push("*** Simpletron终止执行 ***");
+    this.output.push("*** Simpletron execution terminated ***");
     
     return {
       success: true,
-      output: "*** Simpletron终止执行 ***"
+      output: "*** Simpletron execution terminated ***"
     };
   }
 
@@ -399,17 +400,18 @@ export class Simpletron {
     return sign + word.toString().padStart(4, '0');
   }
 
-  public generateDump(): string {
+  public generateDump(language: Language = 'en'): string {
+    const t = translations[language];
     const dump = [];
     
-    dump.push("寄存器:");
-    dump.push(`accumulator\t\t${this.formatWord(this.state.accumulator)}`);
-    dump.push(`instructionCounter\t${this.state.instructionCounter.toString().padStart(2, '0')}`);
-    dump.push(`instructionRegister\t${this.formatWord(this.state.instructionRegister)}`);
-    dump.push(`operationCode\t\t${this.state.operationCode.toString().padStart(2, '0')}`);
-    dump.push(`operand\t\t\t${this.state.operand.toString().padStart(2, '0')}`);
+    dump.push(t.memoryDump.registers);
+    dump.push(`${t.memoryDump.registerNames.accumulator}\t\t${this.formatWord(this.state.accumulator)}`);
+    dump.push(`${t.memoryDump.registerNames.instructionCounter}\t${this.state.instructionCounter.toString().padStart(2, '0')}`);
+    dump.push(`${t.memoryDump.registerNames.instructionRegister}\t${this.formatWord(this.state.instructionRegister)}`);
+    dump.push(`${t.memoryDump.registerNames.operationCode}\t\t${this.state.operationCode.toString().padStart(2, '0')}`);
+    dump.push(`${t.memoryDump.registerNames.operand}\t\t\t${this.state.operand.toString().padStart(2, '0')}`);
     dump.push("");
-    dump.push("内存:");
+    dump.push(t.memoryDump.memory);
     
     // 内存标题行
     let header = "      ";
