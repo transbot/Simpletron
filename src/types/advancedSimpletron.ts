@@ -96,45 +96,59 @@ export const getAdvancedExamplePrograms = (language: 'zh' | 'en') => {
     ],
 
     powerMod: language === 'zh' ? [
-      `// 求幂和求余运算演示`,
+      `// 求幂运算演示`,
       `00 ? +1099  // 读取底数`,
       `01 ? +1098  // 读取指数`,
       `02 ? +2099  // 加载底数`,
-      `03 ? +3598  // 计算幂运算`,
-      `04 ? +2197  // 存储结果`,
+      `03 ? +3598  // 计算幂运算 (底数^指数)`,
+      `04 ? +2197  // 存储幂运算结果`,
       `05 ? +1197  // 输出幂运算结果`,
-      `06 ? +1096  // 读取除数`,
-      `07 ? +2097  // 加载幂运算结果`,
-      `08 ? +3496  // 求余运算`,
-      `09 ? +2195  // 存储余数`,
-      `10 ? +1195  // 输出余数`,
-      `11 ? +4300  // 停止`,
-      `95 ? +0000  // 余数`,
-      `96 ? +0000  // 除数`,
+      `06 ? +4300  // 停止程序`,
       `97 ? +0000  // 幂运算结果`,
       `98 ? +0000  // 指数`,
       `99 ? +0000  // 底数`,
-      `104 ? -99999`
+      `100 ? -99999`
     ] : [
-      `// Power and modulo operations demo`,
+      `// Power operation demo`,
       `00 ? +1099  // Read base`,
       `01 ? +1098  // Read exponent`,
       `02 ? +2099  // Load base`,
-      `03 ? +3598  // Calculate power`,
-      `04 ? +2197  // Store result`,
+      `03 ? +3598  // Calculate power (base^exponent)`,
+      `04 ? +2197  // Store power result`,
       `05 ? +1197  // Write power result`,
-      `06 ? +1096  // Read divisor`,
-      `07 ? +2097  // Load power result`,
-      `08 ? +3496  // Modulo operation`,
-      `09 ? +2195  // Store remainder`,
-      `10 ? +1195  // Write remainder`,
-      `11 ? +4300  // Halt`,
-      `95 ? +0000  // Remainder`,
-      `96 ? +0000  // Divisor`,
+      `06 ? +4300  // Halt program`,
       `97 ? +0000  // Power result`,
       `98 ? +0000  // Exponent`,
       `99 ? +0000  // Base`,
-      `104 ? -99999`
+      `100 ? -99999`
+    ],
+
+    modulo: language === 'zh' ? [
+      `// 求余运算演示`,
+      `00 ? +1099  // 读取被除数`,
+      `01 ? +1098  // 读取除数`,
+      `02 ? +2099  // 加载被除数`,
+      `03 ? +3498  // 求余运算 (被除数 % 除数)`,
+      `04 ? +2197  // 存储余数`,
+      `05 ? +1197  // 输出余数`,
+      `06 ? +4300  // 停止程序`,
+      `97 ? +0000  // 余数结果`,
+      `98 ? +0000  // 除数`,
+      `99 ? +0000  // 被除数`,
+      `100 ? -99999`
+    ] : [
+      `// Modulo operation demo`,
+      `00 ? +1099  // Read dividend`,
+      `01 ? +1098  // Read divisor`,
+      `02 ? +2099  // Load dividend`,
+      `03 ? +3498  // Modulo operation (dividend % divisor)`,
+      `04 ? +2197  // Store remainder`,
+      `05 ? +1197  // Write remainder`,
+      `06 ? +4300  // Halt program`,
+      `97 ? +0000  // Remainder result`,
+      `98 ? +0000  // Divisor`,
+      `99 ? +0000  // Dividend`,
+      `100 ? -99999`
     ]
   };
 };

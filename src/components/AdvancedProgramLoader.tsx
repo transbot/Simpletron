@@ -63,7 +63,15 @@ export const AdvancedProgramLoader: React.FC<AdvancedProgramLoaderProps> = ({ on
               disabled={isRunning}
               className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {language === 'zh' ? '求幂求余' : 'Power/Mod'}
+              {language === 'zh' ? '求幂运算' : 'Power'}
+            </button>
+            <button
+              type="button"
+              onClick={() => loadExampleProgram('modulo')}
+              disabled={isRunning}
+              className="px-3 py-1 bg-orange-600 text-white rounded text-sm hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {language === 'zh' ? '求余运算' : 'Modulo'}
             </button>
             <button
               type="button"
