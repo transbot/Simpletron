@@ -26,7 +26,7 @@ export const AdvancedMemoryDump: React.FC<AdvancedMemoryDumpProps> = ({ state, l
   };
 
   // Show first 200 addresses (20 rows x 10 columns)
-  const memoryRows = 20;
+  const memoryRows = 100; // Show all 1000 addresses (100 rows x 10 columns)
 
   return (
     <div className="bg-gray-900 rounded-lg p-6 font-mono text-sm border border-purple-500/30">
@@ -68,14 +68,14 @@ export const AdvancedMemoryDump: React.FC<AdvancedMemoryDumpProps> = ({ state, l
 
       <div>
         <h4 className="text-lg font-medium mb-3 text-green-400">
-          {language === 'zh' ? '内存 (地址 000-199):' : 'Memory (Addresses 000-199):'}
+          {language === 'zh' ? '内存 (地址 000-999):' : 'Memory (Addresses 000-999):'}
         </h4>
         <div className="text-gray-300 text-xs overflow-x-auto">
           {/* Header row */}
           <div className="flex mb-2">
-            <div className="w-10 text-yellow-400"></div>
+            <div className="w-12 text-yellow-400 text-center font-bold">Addr</div>
             {Array.from({length: 10}, (_, i) => (
-              <div key={i} className="w-14 text-center text-yellow-400 font-bold">
+              <div key={i} className="w-12 text-center text-yellow-400 font-bold">
                 {i}
               </div>
             ))}
@@ -84,7 +84,7 @@ export const AdvancedMemoryDump: React.FC<AdvancedMemoryDumpProps> = ({ state, l
           {/* Memory rows */}
           {Array.from({length: memoryRows}, (_, row) => (
             <div key={row} className="flex mb-1">
-              <div className="w-10 text-yellow-400 font-bold">
+              <div className="w-12 text-yellow-400 font-bold text-center">
                 {(row * 10).toString().padStart(3, '0')}
               </div>
               {Array.from({length: 10}, (_, col) => {
@@ -96,7 +96,7 @@ export const AdvancedMemoryDump: React.FC<AdvancedMemoryDumpProps> = ({ state, l
                 return (
                   <div 
                     key={col} 
-                    className={`w-14 text-center text-xs ${
+                    className={`w-12 text-center text-xs ${
                       isCurrentInstruction 
                         ? 'bg-purple-600 text-white font-bold' 
                         : hasValue 
@@ -117,8 +117,8 @@ export const AdvancedMemoryDump: React.FC<AdvancedMemoryDumpProps> = ({ state, l
         
         <div className="mt-4 text-xs text-gray-400">
           {language === 'zh' 
-            ? '显示前200个内存地址。高级版支持1000字内存空间 (000-999)。'
-            : 'Showing first 200 memory addresses. Advanced version supports 1000-word memory space (000-999).'
+            ? '显示全部1000个内存地址 (000-999)。当前指令地址用紫色高亮显示。'
+            : 'Showing all 1000 memory addresses (000-999). Current instruction address highlighted in purple.'
           }
         </div>
       </div>
