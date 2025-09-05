@@ -121,6 +121,9 @@ export class Simpletron {
     let result: ExecutionResult = { success: true };
 
     switch (this.state.operationCode) {
+      case 0: // NOP - No Operation
+        result = { success: true };
+        break;
       case OPCODES.READ:
         result = this.executeRead();
         break;

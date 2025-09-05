@@ -25,6 +25,7 @@ export const translations = {
       loadProgram: '加载程序',
       instructionHelp: 'SML指令说明:',
       opcodes: {
+        nop: '无操作（NOP）',
         read: '读取到地址xx',
         write: '写入地址xx的值',
         load: '加载地址xx到累加器',
@@ -176,6 +177,7 @@ export const translations = {
       loadProgram: 'Load Program',
       instructionHelp: 'SML Instruction Reference:',
       opcodes: {
+        nop: 'No operation (NOP)',
         read: 'Read to address xx',
         write: 'Write value at address xx',
         load: 'Load address xx to accumulator',

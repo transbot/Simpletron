@@ -18,6 +18,7 @@ export interface ExecutionResult {
 }
 
 export const OPCODES = {
+  NOP: 0,
   READ: 10,
   WRITE: 11,
   LOAD: 20,

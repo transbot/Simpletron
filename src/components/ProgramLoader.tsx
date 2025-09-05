@@ -104,6 +104,7 @@ export const ProgramLoader: React.FC<ProgramLoaderProps> = ({ onLoad, isRunning,
         <div className="mt-4 text-xs text-gray-400">
           <div className="mb-2 font-semibold">{t.programLoader.instructionHelp}</div>
           <div className="space-y-1">
+            <div><span className="text-yellow-400">00xx</span> - {t.programLoader.opcodes.nop}</div>
             <div><span className="text-yellow-400">10xx</span> - {t.programLoader.opcodes.read}</div>
             <div><span className="text-yellow-400">11xx</span> - {t.programLoader.opcodes.write}</div>
             <div><span className="text-yellow-400">20xx</span> - {t.programLoader.opcodes.load}</div>
