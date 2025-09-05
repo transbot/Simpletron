@@ -59,34 +59,86 @@ export class Simpletron {
 
   public loadProgramFromInput(program: string): { success: boolean; error?: string } {
     const instructions: number[] = [];
-    const lines = program.trim().split('\n').filter(line => line.trim());
+    const lines = program.trim().split('\n');
+    let currentAddress = 0;
     
     for (const line of lines) {
-      // 移除注释（以//开始的部分）
-      const commentIndex = line.indexOf('//');
-      const trimmed = (commentIndex !== -1 ? line.substring(0, commentIndex) : line).trim();
+      const trimmedLine = line.trim();
       
       // 跳过空行
-      if (!trimmed) continue;
+      if (!trimmedLine) continue;
       
-      if (trimmed === '-99999') break;
+      let address: number;
+      let instruction: number;
       
-      const num = parseInt(trimmed);
-      if (isNaN(num)) {
+      // 检查是否有地址前缀格式 "XX ? +YYYY"
+      const addressFormatMatch = trimmedLine.match(/^(\d{2})\s*\?\s*([+-]?\d+)/);
+      
+      if (addressFormatMatch) {
+        // 有地址前缀的格式
+        address = parseInt(addressFormatMatch[1]);
+        const instructionStr = addressFormatMatch[2];
+        
+        // 移除注释
+        const commentIndex = instructionStr.indexOf('//');
+        const cleanInstructionStr = (commentIndex !== -1 ? 
+          instructionStr.substring(0, commentIndex) : instructionStr).trim();
+        
+        instruction = parseInt(cleanInstructionStr);
+        
+        if (isNaN(instruction)) {
+          return {
+            success: false,
+            error: `无效指令: "${cleanInstructionStr}" 在地址 ${address.toString().padStart(2, '0')} (原行: "${trimmedLine}")`
+          };
+        }
+      } else {
+        // 传统格式，没有地址前缀
+        const commentIndex = trimmedLine.indexOf('//');
+        const cleanLine = (commentIndex !== -1 ? 
+          trimmedLine.substring(0, commentIndex) : trimmedLine).trim();
+        
+        if (!cleanLine) continue;
+        
+        if (cleanLine === '-99999') break;
+        
+        instruction = parseInt(cleanLine);
+        if (isNaN(instruction)) {
+          return {
+            success: false,
+            error: `无效输入: "${cleanLine}" (原行: "${trimmedLine}")`
+          };
+        }
+        
+        address = currentAddress;
+      }
+      
+      // 检查哨兵值
+      if (instruction === -99999) break;
+      
+      // 验证地址范围
+      if (address < 0 || address >= 100) {
         return {
           success: false,
-          error: `无效输入: "${trimmed}" (原行: "${line.trim()}")`
+          error: `地址 ${address} 超出有效范围 (0-99) (原行: "${trimmedLine}")`
         };
       }
       
-      if (!this.isValidWord(num)) {
+      // 验证指令范围
+      if (!this.isValidWord(instruction)) {
         return {
           success: false,
-          error: `数字 ${num} 超出有效范围 (-9999 到 +9999) (原行: "${line.trim()}")`
+          error: `指令 ${instruction} 超出有效范围 (-9999 到 +9999) 在地址 ${address.toString().padStart(2, '0')} (原行: "${trimmedLine}")`
         };
       }
       
-      instructions.push(num);
+      // 确保instructions数组足够大
+      while (instructions.length <= address) {
+        instructions.push(0);
+      }
+      
+      instructions[address] = instruction;
+      currentAddress = Math.max(currentAddress, address + 1);
     }
 
     return this.loadProgram(instructions);

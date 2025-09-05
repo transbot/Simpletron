@@ -40,29 +40,29 @@ export const getExamplePrograms = (language: Language) => {
   
   return {
     addition: [
-      `+1007  // ${t.examples.addition.readA}`,
-      `+1008  // ${t.examples.addition.readB}`, 
-      `+2007  // ${t.examples.addition.loadA}`,
-      `+3008  // ${t.examples.addition.addB}`,
-      `+2109  // ${t.examples.addition.storeC}`,
-      `+1109  // ${t.examples.addition.writeC}`,
-      `+4300  // ${t.examples.addition.halt}`,
-      `+0000  // ${t.examples.addition.varA}`,
-      `+0000  // ${t.examples.addition.varB}`,
-      `+0000  // ${t.examples.addition.resultC}`,
-      "-99999"
+      `00 ? +1007  // ${t.examples.addition.readA}`,
+      `01 ? +1008  // ${t.examples.addition.readB}`, 
+      `02 ? +2007  // ${t.examples.addition.loadA}`,
+      `03 ? +3008  // ${t.examples.addition.addB}`,
+      `04 ? +2109  // ${t.examples.addition.storeC}`,
+      `05 ? +1109  // ${t.examples.addition.writeC}`,
+      `06 ? +4300  // ${t.examples.addition.halt}`,
+      `07 ? +0000  // ${t.examples.addition.varA}`,
+      `08 ? +0000  // ${t.examples.addition.varB}`,
+      `09 ? +0000  // ${t.examples.addition.resultC}`,
+      `10 ? -99999`
     ],
     comparison: [
-      `+1009  // ${t.examples.comparison.readA}`,
-      `+1010  // ${t.examples.comparison.readB}`,
-      `+2009  // ${t.examples.comparison.loadA}`, 
-      `+3110  // ${t.examples.comparison.subB}`,
-      `+4107  // ${t.examples.comparison.branchNeg}`,
-      `+1109  // ${t.examples.comparison.writeA}`,
-      `+4300  // ${t.examples.comparison.halt}`,
-      `+1110  // ${t.examples.comparison.writeB}`,
-      `+4300  // ${t.examples.comparison.halt}`, 
-      `+0000  // ${t.examples.comparison.varA}`,
-    ]
-  };
+      `00 ? +1009  // ${t.examples.comparison.readA}`,
+      `01 ? +1010  // ${t.examples.comparison.readB}`,
+      `02 ? +2009  // ${t.examples.comparison.loadA}`, 
+      `03 ? +3110  // ${t.examples.comparison.subB}`,
+      `04 ? +4107  // ${t.examples.comparison.branchNeg}`,
+      `05 ? +1109  // ${t.examples.comparison.writeA}`,
+      `06 ? +4300  // ${t.examples.comparison.halt}`,
+      `07 ? +1110  // ${t.examples.comparison.writeB}`,
+      `08 ? +4300  // ${t.examples.comparison.halt}`, 
+      `09 ? +0000  // ${t.examples.comparison.varA}`,
+      `10 ? +0000  // ${t.examples.comparison.varB}`,
+      `11 ? -99999`
 };
