@@ -34,7 +34,7 @@ export const translations = {
         divide: '累加器 /= 地址xx',
         multiply: '累加器 *= 地址xx',
         branch: '跳转到地址xx',
-        branchNeg: '如果累加器&lt;0跳转到地址xx',
+        branchNeg: '如果累加器<0跳转到地址xx',
         branchZero: '如果累加器=0跳转到地址xx',
         halt: '停止执行'
       }
@@ -185,7 +185,7 @@ export const translations = {
         divide: 'Accumulator /= address xx',
         multiply: 'Accumulator *= address xx',
         branch: 'Branch to address xx',
-        branchNeg: 'Branch to address xx if accumulator &lt; 0',
+        branchNeg: 'Branch to address xx if accumulator < 0',
         branchZero: 'Branch to address xx if accumulator = 0',
         halt: 'Halt execution'
       }
