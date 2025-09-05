@@ -65,4 +65,6 @@ export const getExamplePrograms = (language: Language) => {
       `09 ? +0000  // ${t.examples.comparison.varA}`,
       `10 ? +0000  // ${t.examples.comparison.varB}`,
       `11 ? -99999`
-};
+    ]
+  };
+}
