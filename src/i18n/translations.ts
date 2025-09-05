@@ -123,17 +123,29 @@ export const translations = {
         varB: '变量B'
       },
       findMax: {
+        readCount: '读取要比较的数字个数',
+        loadCount: '加载数字个数',
+        branchIfZero: '如果为0则结束程序',
+        storeCount: '存储计数器',
         readFirst: '读取第一个数字',
-        readSecond: '读取第二个数字',
         loadFirst: '加载第一个数字',
-        subSecond: '减去第二个数字',
-        branchIfSecondLarger: '如果第二个数字更大则跳转',
-        writeFirst: '输出第一个数字（较大）',
+        storeMax: '存储为最大值',
+        subtract1: '减1',
+        storeNewCount: '存储新计数',
+        branchIfDone: '如果完成则结束',
+        readNext: '读取下一个数字',
+        loadMax: '加载当前最大值',
+        subNew: '减去新数字',
+        branchIfNewIsLarger: '如果新数字更大则跳转',
+        jumpToLoop: '跳转回循环',
+        loadNew: '加载新数字',
+        updateMax: '更新最大值',
+        writeMax: '输出最大值',
         halt: '停止',
-        writeSecond: '输出第二个数字（较大）',
-        halt2: '停止',
-        firstNumber: '第一个数字',
-        secondNumber: '第二个数字'
+        maxValue: '最大值存储',
+        counter: '计数器',
+        currentNumber: '当前数字',
+        constant1: '常量1'
       }
     }
   },
