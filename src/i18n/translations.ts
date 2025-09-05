@@ -140,9 +140,12 @@ export const translations = {
         readNext: '读取下一个数字到地址10',
         loadMax: '加载当前最大值',
         subNew: '减去新数字',
-        branchIfNeg: '如果结果为负（新数字更大），跳转到08更新最大值',
+        branchIfNeg: '如果结果为负（新数字更大），跳转到20更新最大值',
         writeMax: '显示最大值',
         halt: '停止',
+        updateMax: '加载新数字',
+        storeNewMax: '存储新的最大值',
+        jumpToLoop: '跳转回循环开始',
         constant1: '常量1'
       }
     }
@@ -289,9 +292,12 @@ export const translations = {
         readNext: 'Read next number to address 10',
         loadMax: 'Load current maximum',
         subNew: 'Subtract new number',
-        branchIfNeg: 'If negative (new number is larger), branch to 08 to update max',
+        branchIfNeg: 'If negative (new number is larger), branch to 20 to update max',
         writeMax: 'Display maximum',
         halt: 'Halt',
+        updateMax: 'Load new number',
+        storeNewMax: 'Store new maximum',
+        jumpToLoop: 'Jump back to loop start',
         constant1: 'Constant 1'
       }
     }
