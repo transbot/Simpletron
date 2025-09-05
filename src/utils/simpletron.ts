@@ -104,7 +104,7 @@ export class Simpletron {
         // 检查是否是没有地址前缀但有指令的行
         const commentIndex = trimmedLine.indexOf('//');
         const cleanLine = (commentIndex !== -1 ? 
-          instructionStr.substring(0, commentIndex) : instructionStr).trim();
+          trimmedLine.substring(0, commentIndex) : trimmedLine).trim();
         
         // 如果清理后的行为空，跳过
         if (!cleanLine) continue;
