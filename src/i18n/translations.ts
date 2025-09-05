@@ -262,17 +262,30 @@ export const translations = {
         varB: 'Variable B'
       },
       findMax: {
-        readFirst: 'Read first number',
-        readSecond: 'Read second number',
-        loadFirst: 'Load first number',
-        subSecond: 'Subtract second number',
-        branchIfSecondLarger: 'Branch if second number is larger',
-        writeFirst: 'Write first number (larger)',
+        readCount: 'Read number count to address 20',
+        loadCount: 'Load number count to accumulator',
+        branchIfZero: 'If 0, branch to 17 (end program)',
+        storeCount: 'Store count to address 21',
+        readFirst: 'Read first number to address 22',
+        loadFirst: 'Load that number to accumulator',
+        loadCount: 'Load count',
+        subtract1: 'Subtract 1 (address 23 stores constant 1)',
+        storeNewCount: 'Store new count',
+        branchIfDone: 'If 0 (all numbers processed), branch to 17',
+        readNext: 'Read next number to address 22',
+        loadMax: 'Load current maximum',
+        subNew: 'Subtract new number',
+        branchIfNewIsLarger: 'If negative (new number is larger), branch to 15 to update max',
+        jumpToLoop: 'Jump back to loop start',
+        jumpToLoop2: 'Jump back to loop start',
+        loadNew: 'Load new number to accumulator',
+        updateMax: 'Update maximum',
+        writeMax: 'Display maximum',
         halt: 'Halt',
-        writeSecond: 'Write second number (larger)',
-        halt2: 'Halt',
-        firstNumber: 'First number',
-        secondNumber: 'Second number'
+        maxValue: 'Maximum value storage',
+        counter: 'Counter',
+        currentNumber: 'Current number',
+        constant1: 'Constant 1'
       }
     }
   }
