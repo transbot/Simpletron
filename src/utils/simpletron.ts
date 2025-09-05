@@ -70,7 +70,7 @@ export class Simpletron {
       let address: number;
       let instruction: number;
       
-      // 检查是否有地址前缀格式 "XX ? +YYYY" 或 "XX ? YYYY"
+      // 检查是否有地址前缀格式 "XX ? +YYYY"
       const addressFormatMatch = trimmedLine.match(/^(\d{1,2})\s*\?\s*([+-]?\d+)/);
       
       if (addressFormatMatch) {
@@ -101,7 +101,7 @@ export class Simpletron {
           };
         }
       } else {
-        // 检查是否是传统的顺序输入格式（没有地址前缀）
+        // 检查是否是没有地址前缀但有指令的行
         const commentIndex = trimmedLine.indexOf('//');
         const cleanLine = (commentIndex !== -1 ? 
           trimmedLine.substring(0, commentIndex) : trimmedLine).trim();
@@ -109,14 +109,11 @@ export class Simpletron {
         // 如果清理后的行为空，跳过
         if (!cleanLine) continue;
         
-        // 检查是否是纯数字指令（顺序输入格式）
+        // 检查是否是纯数字指令（传统格式）
         const instructionMatch = cleanLine.match(/^([+-]?\d+)$/);
         if (!instructionMatch) {
-          // 不是有效的指令格式，返回错误
-          return {
-            success: false,
-            error: `无效的指令格式: "${trimmedLine}". 请使用 "地址 ? 指令" 格式或纯数字格式`
-          };
+          // 不是有效的指令格式，跳过这行
+          continue;
         }
         
         instruction = parseInt(instructionMatch[1]);
@@ -127,40 +124,22 @@ export class Simpletron {
           };
         }
         
-        // 检查哨兵值
-        if (instruction === -99999) break;
-        
-        // 对于顺序输入格式，按顺序分配地址
-        address = instructions.length;
-        
-        // 验证地址范围
-        if (address >= 100) {
-          return {
-            success: false,
-            error: `程序太大，超出内存范围 (最大99个地址)`
-          };
-        }
-        
-        // 验证指令范围
-        if (!this.isValidWord(instruction)) {
-          return {
-            success: false,
-            error: `指令 ${instruction} 超出有效范围 (-9999 到 +9999) 在地址 ${address.toString().padStart(2, '0')}`
-          };
-        }
-        
-        instructions.push(instruction);
-        continue;
+        // 对于传统格式，需要按顺序分配地址
+        // 但这里我们要求必须使用地址前缀格式
+        return {
+          success: false,
+          error: `指令必须包含地址前缀格式 "XX ? instruction" (原行: "${trimmedLine}")`
+        };
       }
       
       // 检查哨兵值
       if (instruction === -99999) break;
       
       // 验证地址范围
-      if (address < 0 || address > 99) {
+      if (address < 0 || address > 100) {
         return {
           success: false,
-          error: `地址 ${address} 超出有效范围 (0-99) (原行: "${trimmedLine}")`
+          error: `地址 ${address} 超出有效范围 (0-100) (原行: "${trimmedLine}")`
         };
       }
       
