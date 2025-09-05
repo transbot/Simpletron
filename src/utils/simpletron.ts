@@ -396,8 +396,11 @@ export class Simpletron {
   }
 
   private formatWord(word: number): string {
-    const sign = word >= 0 ? '+' : '';
-    return sign + word.toString().padStart(4, '0');
+    if (word >= 0) {
+      return '+' + word.toString().padStart(4, '0');
+    } else {
+      return '-' + Math.abs(word).toString().padStart(4, '0');
+    }
   }
 
   public generateDump(language: Language = 'en'): string {
